@@ -17,7 +17,6 @@ var guesses = [
 
 var guessedLetters = [];
 
-// var guess = //keystroke
 
 
 // Randomly selects an answer to the game
@@ -29,36 +28,55 @@ for (var i = 0; i < word.length; i++) {
     answerArray[i] = "_";
 }
 
-function gameReset() {
-    document.getElementById("remain").textContent = "GAME OVER";
-}
-
 // Any keystroke starts the game
 
 window.onkeypress = function gameStart() {
-    document.getElementById("test").textContent = answerArray.join(" ");
-    // document.getElementById("answer").textContent = word;
+    document.getElementById("answer").textContent = answerArray.join(" ");
     document.getElementById("remain").textContent = "Remaining guesses " + guesses;
     document.onkeypress = function(event) {
     var guessedLetters = event.key;
+    document.getElementById("guessed").textContent = "Guessed letters: " + guessedLetters + ", ";
     guesses--;
-    
     for (var j = 0; j < word.length; j++) {
     if (word[j] === guessedLetters) {
-        answerArray[j] = guessedLetters;
-    }
-
-    if (word === guessedLetters) {
-        console.log("YOU WIN!");
-    }
-
+        answerArray[j] = guessedLetters; 
+    } 
 }}
+
 if (guesses === 0) {
     window.location.reload();
 }
-
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Everything under here is stuff that hasn't worked or I haven't finished. 
+
+
+
+
+// if (word === guessedLetters) {
+//     document.write("YOU WIN!");
+// }
+
+// }
+
+
+// This was in place to make sure the word populating matched the blank array
+// document.getElementById("answer").textContent = word;
 
 
 //document.getElementById("test").textContent = answerArray.splice(0, 1, guessedLetters);
