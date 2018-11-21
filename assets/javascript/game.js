@@ -29,18 +29,47 @@ for (var i = 0; i < word.length; i++) {
     answerArray[i] = "_";
 }
 
+function gameReset() {
+    document.getElementById("remain").textContent = "GAME OVER";
+}
+
 // Any keystroke starts the game
 
 window.onkeypress = function gameStart() {
     document.getElementById("test").textContent = answerArray.join(" ");
-    document.getElementById("answer").textContent = word;
-    document.getElementById("remain").textContent = "Remaining guesses " + guesses--;
-    document.onkeyup = function(event) {
+    // document.getElementById("answer").textContent = word;
+    document.getElementById("remain").textContent = "Remaining guesses " + guesses;
+    document.onkeypress = function(event) {
     var guessedLetters = event.key;
-    console.log(guessedLetters);
+    guesses--;
+    
     for (var j = 0; j < word.length; j++) {
     if (word[j] === guessedLetters) {
-    console.log("Right");}}}}
+        answerArray[j] = guessedLetters;
+    }
+
+    if (word === guessedLetters) {
+        console.log("YOU WIN!");
+    }
+
+}}
+if (guesses === 0) {
+    window.location.reload();
+}
+
+}
+
+
+
+//document.getElementById("test").textContent = answerArray.splice(0, 1, guessedLetters);
+    // console.log("Right");
+    //         }
+    // else (word[j] !== guessedLetters) 
+    //     }
+
+    // if (guesses < 1) {
+    //     return;
+    // }
     // if (word[0] == guessedLetters) {
     //     console.log("Right");
     //     console.log("Wrong");
@@ -66,9 +95,10 @@ window.onkeypress = function gameStart() {
     // }
  
 
+// console.log(answerArray);
+        // console.log("Right");
 
-
-
+// console.log(guessedLetters);
 
 // for (var j = 0; j < word.length; j++) {
 //     if (word[j] === guessedLetters) {
